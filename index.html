@@ -1,0 +1,663 @@
+<title>ผลการเรียน ป.4 เทอม 1/2569</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&family=Sarabun:wght@400;500;600&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+  /* Layout: one centered column; summary tiles first, then chart + table sharing one control bar, then insights, plan and the LINE message. */
+  :root {
+    --bg: #F5F7FB; --panel: #FFFFFF; --ink: #16213E; --muted: #5A6580; --line: #E2E7F0;
+    --navy: #1F3A68; --navy-soft: #E6ECF7;
+    --pink: #D9608E; --pink-soft: #FCE8F0;
+    --teal: #16897F; --teal-soft: #DDF2EF;
+    --warm: #A86F0C; --warm-soft: #FBF0D9;
+    --bar-mid: #2B4C86; --bar-final: #E489AD;
+    --font-display: "Prompt", "Sarabun", "Noto Sans Thai", system-ui, sans-serif;
+    --font-body: "Sarabun", "Noto Sans Thai", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D1322; --panel: #151D31; --ink: #E8ECF5; --muted: #9BA6BF; --line: #263049;
+      --navy: #9DB8EC; --navy-soft: #1C2945;
+      --pink: #F294B8; --pink-soft: #3A1F2E;
+      --teal: #5BCFC3; --teal-soft: #12302D;
+      --warm: #E6B456; --warm-soft: #3A2D13;
+      --bar-mid: #7FA0DE; --bar-final: #F09CBD;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1322; --panel: #151D31; --ink: #E8ECF5; --muted: #9BA6BF; --line: #263049;
+    --navy: #9DB8EC; --navy-soft: #1C2945;
+    --pink: #F294B8; --pink-soft: #3A1F2E;
+    --teal: #5BCFC3; --teal-soft: #12302D;
+    --warm: #E6B456; --warm-soft: #3A2D13;
+    --bar-mid: #7FA0DE; --bar-final: #F09CBD;
+    color-scheme: dark;
+  }
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 1120px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+  .display { font-family: var(--font-display); }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; color: var(--ink); }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+  .muted { color: var(--muted); }
+  .num { font-variant-numeric: tabular-nums; }
+  .eyebrow { font-size: 13px; letter-spacing: .04em; color: var(--muted); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 2px 10px; font-size: 14px; white-space: nowrap; }
+  .chip-up { background: var(--teal-soft); color: var(--teal); }
+  .chip-down { background: var(--warm-soft); color: var(--warm); }
+  .chip-flat { background: var(--navy-soft); color: var(--navy); }
+  .tag-fact { background: var(--navy-soft); color: var(--navy); }
+  .tag-advice { background: var(--pink-soft); color: var(--pink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 8px 14px; font-size: 15px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .btn:hover { border-color: var(--navy); }
+  .btn-primary { background: var(--navy); color: var(--panel); border-color: var(--navy); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn:focus-visible, select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--pink); outline-offset: 2px; }
+  select, input[type=number] { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: 15px; font-family: var(--font-body); }
+  input[type=number] { width: 4.5rem; text-align: right; }
+  .seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+  .seg button { border: 1px solid var(--line); background: var(--panel); color: var(--muted); border-radius: 999px; padding: 4px 12px; font-size: 14px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--panel); }
+  table.t { width: 100%; border-collapse: collapse; font-size: 15px; }
+  table.t th { text-align: left; font-weight: 500; font-size: 13px; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  table.t td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.t tr:last-child td { border-bottom: 0; }
+  table.t .r { text-align: right; }
+  table.t tbody tr { cursor: pointer; }
+  table.t tbody tr:hover td, table.t tbody tr.sel td { background: var(--navy-soft); }
+  .scroll-x { overflow-x: auto; }
+  .tip { position: relative; display: inline-flex; }
+  .tip-pop { position: absolute; z-index: 20; top: calc(100% + 8px); left: 0; width: min(19rem, 80vw); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: 0 10px 28px rgba(20, 30, 60, .16); font-size: 14px; line-height: 1.55; color: var(--ink); }
+  .rc-tip { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 14px; box-shadow: 0 8px 22px rgba(20, 30, 60, .14); color: var(--ink); }
+  .recharts-text { fill: var(--muted); font-family: var(--font-body); }
+  .recharts-cartesian-grid line { stroke: var(--line); }
+  .summary-box { white-space: pre-wrap; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 15px; line-height: 1.75; max-height: 26rem; overflow: auto; }
+  .bar-track { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: var(--teal); }
+  .loading { padding: 48px 0; text-align: center; color: var(--muted); }
+  @media print {
+    .no-print { display: none !important; }
+    .panel { break-inside: avoid; }
+    body { font-size: 13px; }
+  }
+</style>
+
+<div id="root"><div class="wrap"><p class="loading">กำลังโหลดแดชบอร์ด…</p></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+<script src="https://unpkg.com/lucide-react@0.400.0/dist/umd/lucide-react.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+(function () {
+  const { useState, useMemo, useEffect } = React;
+  const html = htm.bind(React.createElement);
+  const RC = window.Recharts || {};
+  const Lucide = window.LucideReact || {};
+  const Icon = (name) => Lucide[name] || (() => null);
+  const [TrendingUp, TrendingDown, Minus, Award, Sparkles, Search, Copy, Check, Info, RotateCcw, Pencil, Target, Heart, CalendarDays, BarChart3, Sun, Moon, Monitor]
+    = ['TrendingUp', 'TrendingDown', 'Minus', 'Award', 'Sparkles', 'Search', 'Copy', 'Check', 'Info', 'RotateCcw', 'Pencil', 'Target', 'Heart', 'CalendarDays', 'BarChart3', 'Sun', 'Moon', 'Monitor'].map(Icon);
+
+  /* ---------- Theme: normal / dark / auto ---------- */
+  const THEME_KEY = 'p4-learning-theme-v1';
+  const HOST_THEME = document.documentElement.getAttribute('data-theme');
+  const THEMES = [
+    { id: 'light', label: 'ปกติ', icon: Sun },
+    { id: 'dark', label: 'มืด', icon: Moon },
+    { id: 'auto', label: 'อัตโนมัติ', icon: Monitor }
+  ];
+  function loadTheme() {
+    try { const t = localStorage.getItem(THEME_KEY); return t === 'light' || t === 'dark' || t === 'auto' ? t : 'auto'; } catch (e) { return 'auto'; }
+  }
+  function applyTheme(t) {
+    const root = document.documentElement;
+    if (t === 'auto') {
+      if (HOST_THEME) root.setAttribute('data-theme', HOST_THEME); else root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', t);
+    }
+  }
+  applyTheme(loadTheme());
+
+  function ThemeSwitch({ theme, setTheme }) {
+    return html`<div class="seg no-print" role="group" aria-label="ธีมการแสดงผล">
+      ${THEMES.map((t) => { const I = t.icon; return html`<button type="button" key=${t.id} aria-pressed=${theme === t.id} onClick=${() => setTheme(t.id)} style=${{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+        <${I} size=${14} aria-hidden="true" />${t.label}</button>`; })}
+    </div>`;
+  }
+
+  /* ---------- Dataset (local JSON, checked against the school report screenshot) ---------- */
+  /* ---------- Dataset: encrypted with the student code (AES-GCM, key from PBKDF2-SHA256) ---------- */
+  const ENCRYPTED_DATA = {"v":1,"iter":310000,"salt":"oCWvl/IFNd1KQP22xODadw==","iv":"h9pGfqiKE1IXmLeG","ct":"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"};
+  let DEFAULT_DATA = null;
+  const GROUPS = [
+    { id: 'all', label: 'ทุกวิชา' },
+    { id: 'stem', label: 'คณิต วิทย์ เทคโนโลยี' },
+    { id: 'lang', label: 'ภาษา' },
+    { id: 'social', label: 'สังคมศึกษา' },
+    { id: 'life', label: 'ศิลปะ สุขศึกษา การงาน' }
+  ];
+  const STORE_KEY = 'p4-learning-scores-v1';
+
+  /* ---------- Calculations ---------- */
+  const r2 = (x) => Math.round(x * 100) / 100;
+  const fmt = (x) => String(r2(x));
+  const fmtSigned = (x) => (r2(x) > 0 ? '+' : '') + fmt(x);
+  const STABLE_BAND = 1; // change within ±1 percentage point counts as stable
+
+  function analyse(data) {
+    const { maxMid, maxFinal } = data;
+    const rows = data.subjects.map((s, i) => {
+      const midPct = (s.mid / maxMid) * 100;
+      const finalPct = (s.final / maxFinal) * 100;
+      const total = s.mid + s.final;
+      const totalPct = (total / (maxMid + maxFinal)) * 100;
+      const change = finalPct - midPct;
+      const status = change >= STABLE_BAND ? 'up' : change <= -STABLE_BAND ? 'down' : 'flat';
+      return { ...s, order: i, midPct, finalPct, total, totalMax: maxMid + maxFinal, totalPct, change, status };
+    });
+    const n = rows.length;
+    const sumMid = rows.reduce((a, r) => a + r.mid, 0);
+    const sumFinal = rows.reduce((a, r) => a + r.final, 0);
+    const midAvg = (sumMid / (maxMid * n)) * 100;
+    const finalAvg = (sumFinal / (maxFinal * n)) * 100;
+    const overall = ((sumMid + sumFinal) / ((maxMid + maxFinal) * n)) * 100;
+    const byTotal = [...rows].sort((a, b) => b.totalPct - a.totalPct);
+    const topScore = byTotal.length ? byTotal[0].totalPct : 0;
+    const top = byTotal.filter((r) => Math.abs(r.totalPct - topScore) < 1e-9);
+    const up = rows.filter((r) => r.status === 'up');
+    const down = rows.filter((r) => r.status === 'down');
+    const flat = rows.filter((r) => r.status === 'flat');
+
+    let strengths = byTotal.filter((r) => r.totalPct >= 90);
+    if (strengths.length === 0) strengths = byTotal.slice(0, 3);
+    const progress = [...up].sort((a, b) => b.change - a.change);
+    const review = rows
+      .filter((r) => r.finalPct < 85 || r.change <= -5)
+      .sort((a, b) => a.finalPct - b.finalPct);
+
+    return { rows, n, sumMid, sumFinal, midAvg, finalAvg, overall, diff: finalAvg - midAvg, top, up, down, flat, strengths, progress, review, maxMid, maxFinal };
+  }
+
+  /* ---------- Plan library (advice, not data) ---------- */
+  const PLAN_LIB = {
+    'ค14101': { focus: 'ฝึกโจทย์ประยุกต์และการอธิบายวิธีคิด', steps: ['โจทย์ปัญหาวันละ 3–5 ข้อ ไม่ต้องมากแต่ทำทุกวัน', 'ให้ขีดเส้นใต้ว่าโจทย์ถามอะไร และข้อมูลที่ให้มามีอะไรบ้าง ก่อนลงมือคิด', 'ให้น้องอธิบายวิธีคิดออกเสียง ถ้าผิดให้ชวนหาว่าผิดตรงขั้นไหน'] },
+    'ว14101': { focus: 'เชื่อมหลักการกับสถานการณ์จริง', steps: ['หยิบเรื่องในบทเรียนมาโยงกับของใกล้ตัว เช่น ในครัวหรือในสวน', 'ทดลองง่าย ๆ สัปดาห์ละครั้ง แล้วให้น้องเล่าว่าเกิดอะไรขึ้น เพราะอะไร', 'ใช้ NotebookLM สร้างคำถามทบทวนจากบทเรียน แล้วให้น้องสอนกลับ'] },
+    'พ14101': { focus: 'ทบทวนเนื้อหาที่ทำผิดในข้อสอบ', steps: ['ขอดูกระดาษคำตอบ หรือถามครูว่าคะแนนหายจากส่วนข้อเขียนหรือส่วนปฏิบัติ', 'ทบทวนเฉพาะหัวข้อที่ผิด ไม่ต้องอ่านใหม่ทั้งเล่ม'] },
+    'ส14234': { focus: 'ฝึกอ่านจับใจความและตีความคำถาม', steps: ['อ่านย่อหน้าสั้น ๆ แล้วสรุปเป็นหนึ่งประโยคด้วยคำพูดของตัวเอง', 'ฝึกวงคำสำคัญในคำถาม เช่น "ไม่ใช่" "ที่สุด" ก่อนเลือกคำตอบ', 'ใช้ Audio Overview ของ NotebookLM ฟังสรุปบทเรียนระหว่างเดินทาง'] },
+    'อ14101': { focus: 'รักษาความต่อเนื่องและเพิ่มกิจกรรมการใช้ภาษา', steps: ['อ่านนิทานหรือดูการ์ตูนภาษาอังกฤษวันละ 15 นาที', 'เล่นเกมคำศัพท์หรือพูดประโยคสั้น ๆ กับคุณแม่ระหว่างวัน'] },
+    'ส14101': { focus: 'ทำความเข้าใจมากกว่าท่องจำ', steps: ['สรุปบทเรียนเป็นแผนผังความคิดหน้าเดียว', 'ใช้ Flashcards หรือ Quiz ใน NotebookLM ทบทวนสั้น ๆ ก่อนสอบ'] },
+    'ส14102': { focus: 'เรียงเหตุการณ์ให้เป็นเรื่องเล่า', steps: ['ทำเส้นเวลาง่าย ๆ ติดผนัง', 'ให้น้องเล่าเหตุการณ์เป็นนิทานสั้น ๆ'] }
+  };
+  const PLAN_DEFAULT = { focus: 'ทบทวนข้อที่ทำผิด', steps: ['ดูว่าข้อที่ผิดเป็นเรื่องอะไร แล้วทบทวนเฉพาะหัวข้อนั้น', 'สรุปบทเรียนเป็นแผนผังสั้น ๆ หนึ่งหน้า'] };
+  const CORE = ['ค14101', 'ว14101'];
+
+  function buildPlan(a) {
+    const byCode = Object.fromEntries(a.rows.map((r) => [r.code, r]));
+    const items = [];
+    const seen = new Set();
+    const add = (code, why) => {
+      if (seen.has(code) || !byCode[code]) return;
+      seen.add(code);
+      items.push({ row: byCode[code], why, ...(PLAN_LIB[code] || PLAN_DEFAULT) });
+    };
+    CORE.forEach((c) => add(c, 'วิชาหลักสำหรับเป้าหมายสอบเข้าสายวิทย์'));
+    a.review.forEach((r) => add(r.code, `ปลายภาค ${fmt(r.finalPct)}% (เปลี่ยน ${fmtSigned(r.change)} จุด)`));
+    a.strengths.filter((r) => r.group === 'lang').slice(0, 1).forEach((r) => add(r.code, `จุดแข็ง คะแนนรวม ${fmt(r.totalPct)}%`));
+    return items;
+  }
+
+  /* ---------- LINE summary (generated from the data) ---------- */
+  function buildSummary(a, data) {
+    const list = (arr, f) => arr.map(f).join(', ');
+    const trend = Math.abs(a.diff) < STABLE_BAND
+      ? `คะแนนเฉลี่ยสองครั้งใกล้เคียงกัน (ต่างกัน ${fmtSigned(a.diff)} จุดเปอร์เซ็นต์)`
+      : a.diff > 0 ? `ปลายภาคเฉลี่ยสูงขึ้น ${fmt(a.diff)} จุดเปอร์เซ็นต์` : `ปลายภาคเฉลี่ยลดลง ${fmt(-a.diff)} จุดเปอร์เซ็นต์`;
+    const plan = buildPlan(a);
+    const out = [];
+    out.push(`สรุปผลการเรียน ${data.student.label} ภาคเรียนที่ ${data.student.term}/${data.student.year}`);
+    out.push('');
+    out.push('ภาพรวม');
+    out.push(`- คะแนนรวม ${a.sumMid + a.sumFinal}/${(a.maxMid + a.maxFinal) * a.n} = ${fmt(a.overall)}%`);
+    out.push(`- กลางภาค ${fmt(a.midAvg)}% และปลายภาค ${fmt(a.finalAvg)}% ${trend}`);
+    out.push(`- ปลายภาคเพิ่มขึ้น ${a.up.length} วิชา คงที่ ${a.flat.length} วิชา ลดลง ${a.down.length} วิชา`);
+    out.push('');
+    out.push('จุดแข็งของลูก');
+    out.push(`- ${list(a.strengths, (r) => `${r.short} ${fmt(r.totalPct)}%`)}`);
+    if (a.progress.length) out.push(`- พัฒนาขึ้นชัดในปลายภาค: ${list(a.progress.slice(0, 3), (r) => `${r.short} ${fmt(r.midPct)}% → ${fmt(r.finalPct)}%`)}`);
+    out.push('');
+    out.push('จุดที่ควรทบทวน');
+    if (a.review.length) {
+      a.review.forEach((r) => out.push(`- ${r.short} ปลายภาค ${fmt(r.finalPct)}% (กลางภาค ${fmt(r.midPct)}%)`));
+    } else {
+      out.push('- ไม่มีวิชาที่ต่ำกว่าเกณฑ์ทบทวน');
+    }
+    out.push('หมายเหตุ: ความยากและเนื้อหาของข้อสอบสองครั้งอาจต่างกัน จึงยังสรุปสาเหตุจากคะแนนอย่างเดียวไม่ได้');
+    out.push('');
+    out.push('แนวทางเทอม 2');
+    plan.forEach((p) => out.push(`- ${p.row.short}: ${p.focus}`));
+    out.push('- วันธรรมดาวันละ 20–30 นาที วันละหนึ่งวิชา และมีวันพักทุกสัปดาห์');
+    out.push('');
+    out.push('ถึงลูกและคุณแม่');
+    out.push('เทอมแรกในโรงเรียนใหม่ที่ข้อสอบยากขึ้น ลูกยังตั้งใจและทำได้ดีหลายวิชา ขอบคุณคุณแม่ที่สอนการบ้านและติวให้ลูกก่อนสอบทุกครั้ง ค่อย ๆ ไปด้วยกันทีละก้าว ชมความพยายามของลูกให้มากกว่าตัวเลขนะครับ');
+    return out.join('\n');
+  }
+
+  /* ---------- Small components ---------- */
+  function StatusChip({ status, change }) {
+    const cfg = status === 'up' ? ['chip-up', TrendingUp, 'เพิ่มขึ้น'] : status === 'down' ? ['chip-down', TrendingDown, 'ลดลง'] : ['chip-flat', Minus, 'คงที่'];
+    const I = cfg[1];
+    return html`<span class=${'chip ' + cfg[0]}><${I} size=${14} aria-hidden="true" />${cfg[2]}${change !== undefined ? html` <span class="num">${fmtSigned(change)}</span>` : null}</span>`;
+  }
+
+  function Tag({ kind }) {
+    return kind === 'fact'
+      ? html`<span class="chip tag-fact" style=${{ fontSize: '12px' }}>ข้อเท็จจริงจากคะแนน</span>`
+      : html`<span class="chip tag-advice" style=${{ fontSize: '12px' }}>ข้อเสนอแนะ</span>`;
+  }
+
+  function HowTip() {
+    const [open, setOpen] = useState(false);
+    return html`<span class="tip no-print">
+      <button type="button" class="btn" style=${{ padding: '4px 10px', fontSize: '14px' }} aria-expanded=${open} onClick=${() => setOpen(!open)}>
+        <${Info} size=${15} aria-hidden="true" /> วิธีคำนวณ
+      </button>
+      ${open ? html`<div class="tip-pop" role="note">
+        <p><b>% ของแต่ละครั้ง</b> = คะแนนที่ได้ ÷ คะแนนเต็มของครั้งนั้น × 100 (กลางภาคเต็ม 30 ปลายภาคเต็ม 20)</p>
+        <p class="mt-2"><b>คะแนนรวม %</b> = (กลางภาค + ปลายภาค) ÷ 50 × 100</p>
+        <p class="mt-2"><b>การเปลี่ยนแปลง</b> = % ปลายภาค − % กลางภาค หน่วยเป็นจุดเปอร์เซ็นต์ ไม่ใช่อัตราการเติบโต</p>
+        <p class="mt-2"><b>คงที่</b> = เปลี่ยนไม่เกิน ±${STABLE_BAND} จุด</p>
+        <p class="mt-2 muted">ไม่ใช่เกรดทางการ เพราะโรงเรียนอาจมีองค์ประกอบการประเมินอื่น</p>
+      </div>` : null}
+    </span>`;
+  }
+
+  function Kpi({ label, value, sub, icon, tone }) {
+    const I = icon;
+    const color = tone === 'teal' ? 'var(--teal)' : tone === 'pink' ? 'var(--pink)' : tone === 'warm' ? 'var(--warm)' : 'var(--navy)';
+    return html`<div class="panel p-4 flex flex-col gap-1 min-w-0">
+      <div class="flex items-center gap-2 eyebrow"><span style=${{ color }}><${I} size=${16} aria-hidden="true" /></span>${label}</div>
+      <div class="display num" style=${{ fontSize: 'clamp(26px, 4vw, 34px)', fontWeight: 500, lineHeight: 1.2, color: 'var(--ink)', overflowWrap: 'anywhere' }}>${value}</div>
+      <div class="muted" style=${{ fontSize: '13px' }}>${sub}</div>
+    </div>`;
+  }
+
+  function ChartTooltip({ active, payload }) {
+    if (!active || !payload || !payload.length) return null;
+    const r = payload[0].payload;
+    return html`<div class="rc-tip">
+      <div style=${{ fontWeight: 500, marginBottom: '4px' }}>${r.name}</div>
+      <div class="flex items-center gap-2 num"><span style=${{ width: 10, height: 10, borderRadius: 3, background: 'var(--bar-mid)', display: 'inline-block' }}></span>กลางภาค ${r.mid}/${r.maxMid} (${fmt(r.midPct)}%)</div>
+      <div class="flex items-center gap-2 num"><span style=${{ width: 10, height: 10, borderRadius: 3, background: 'var(--bar-final)', display: 'inline-block' }}></span>ปลายภาค ${r.final}/${r.maxFinal} (${fmt(r.finalPct)}%)</div>
+      <div class="muted num" style=${{ marginTop: '4px' }}>เปลี่ยนแปลง ${fmtSigned(r.change)} จุด</div>
+    </div>`;
+  }
+
+  function SubjectChart({ rows, maxMid, maxFinal, selected, onSelect }) {
+    const { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } = RC;
+    if (!BarChart) return html`<p class="muted">โหลดไลบรารีกราฟไม่สำเร็จ ข้อมูลทั้งหมดยังดูได้ในตารางด้านล่าง</p>`;
+    const data = rows.map((r) => ({ ...r, maxMid, maxFinal }));
+    const height = Math.max(220, rows.length * 52 + 60);
+    const faded = (r) => (selected && selected !== r.code ? 0.35 : 1);
+    return html`<div style=${{ width: '100%', height }}>
+      <${ResponsiveContainer} width="100%" height="100%">
+        <${BarChart} data=${data} layout="vertical" margin=${{ top: 8, right: 16, bottom: 8, left: 4 }} barGap=${3} barCategoryGap="22%"
+          onClick=${(e) => { if (e && e.activePayload && e.activePayload[0]) onSelect(e.activePayload[0].payload.code); }}>
+          <${CartesianGrid} horizontal=${false} />
+          <${XAxis} type="number" domain=${[0, 100]} ticks=${[0, 25, 50, 75, 100]} tickFormatter=${(v) => v + '%'} tickLine=${false} axisLine=${false} />
+          <${YAxis} type="category" dataKey="short" width=${104} tickLine=${false} axisLine=${false} />
+          <${Tooltip} content=${html`<${ChartTooltip} />`} cursor=${{ fill: 'var(--navy-soft)' }} />
+          <${Legend} verticalAlign="top" align="left" height=${30} iconType="square" formatter=${(v) => html`<span style=${{ color: 'var(--ink)' }}>${v}</span>`} />
+          <${Bar} dataKey="midPct" name="กลางภาค (%)" fill="var(--bar-mid)" radius=${[0, 4, 4, 0]} maxBarSize=${18}>
+            ${data.map((r) => html`<${Cell} key=${'m' + r.code} fill="var(--bar-mid)" fillOpacity=${faded(r)} />`)}
+          <//>
+          <${Bar} dataKey="finalPct" name="ปลายภาค (%)" fill="var(--bar-final)" radius=${[0, 4, 4, 0]} maxBarSize=${18}>
+            ${data.map((r) => html`<${Cell} key=${'f' + r.code} fill="var(--bar-final)" fillOpacity=${faded(r)} />`)}
+          <//>
+        <//>
+      <//>
+    </div>`;
+  }
+
+  function SubjectDetail({ row, onClear }) {
+    if (!row) return html`<p class="muted" style=${{ fontSize: '14px' }}>แตะแท่งกราฟ แถวในตาราง หรือเลือกจากรายการ เพื่อดูรายละเอียดรายวิชา</p>`;
+    const cell = (label, raw, pct) => html`<div class="min-w-0">
+      <div class="eyebrow">${label}</div>
+      <div class="display num" style=${{ fontSize: '22px' }}>${fmt(pct)}%</div>
+      <div class="muted num" style=${{ fontSize: '13px' }}>${raw}</div>
+    </div>`;
+    return html`<div class="flex flex-col gap-3">
+      <div class="flex flex-wrap items-center gap-2 justify-between">
+        <div><span class="muted num" style=${{ fontSize: '13px' }}>${row.code}</span> <b style=${{ fontWeight: 600 }}>${row.name}</b></div>
+        <div class="flex items-center gap-2"><${StatusChip} status=${row.status} change=${row.change} />
+          <button type="button" class="btn no-print" style=${{ padding: '3px 10px', fontSize: '13px' }} onClick=${onClear}>ล้างการเลือก</button></div>
+      </div>
+      <div class="grid gap-3" style=${{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+        ${cell('กลางภาค', `${row.mid}/30`, row.midPct)}
+        ${cell('ปลายภาค', `${row.final}/20`, row.finalPct)}
+        ${cell('รวม', `${row.total}/${row.totalMax}`, row.totalPct)}
+      </div>
+    </div>`;
+  }
+
+  function ScoreTable({ rows, selected, onSelect }) {
+    return html`<div class="scroll-x">
+      <table class="t">
+        <thead><tr>
+          <th>วิชา</th><th class="r">กลางภาค /30</th><th class="r">ปลายภาค /20</th><th class="r">รวม /50</th><th class="r">รวม %</th><th class="r">เปลี่ยนแปลง (จุด)</th><th>สถานะ</th>
+        </tr></thead>
+        <tbody>
+          ${rows.map((r) => html`<tr key=${r.code} class=${selected === r.code ? 'sel' : ''} onClick=${() => onSelect(r.code)} tabIndex=${0}
+              onKeyDown=${(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelect(r.code); } }}>
+            <td style=${{ minWidth: '11rem' }}><div>${r.name}</div><div class="muted num" style=${{ fontSize: '12px' }}>${r.code}</div></td>
+            <td class="r num">${r.mid} <span class="muted">(${fmt(r.midPct)}%)</span></td>
+            <td class="r num">${r.final} <span class="muted">(${fmt(r.finalPct)}%)</span></td>
+            <td class="r num">${r.total}</td>
+            <td class="r num"><div style=${{ fontWeight: 500 }}>${fmt(r.totalPct)}%</div><div class="bar-track" style=${{ width: '4.5rem', marginLeft: 'auto' }}><div class="bar-fill" style=${{ width: Math.min(100, r.totalPct) + '%' }}></div></div></td>
+            <td class="r num">${fmtSigned(r.change)}</td>
+            <td><${StatusChip} status=${r.status} /></td>
+          </tr>`)}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  function InsightCard({ title, icon, tone, children, note }) {
+    const I = icon;
+    const bg = tone === 'teal' ? 'var(--teal-soft)' : tone === 'pink' ? 'var(--pink-soft)' : 'var(--warm-soft)';
+    const fg = tone === 'teal' ? 'var(--teal)' : tone === 'pink' ? 'var(--pink)' : 'var(--warm)';
+    return html`<div class="panel p-5 flex flex-col gap-3 min-w-0">
+      <div class="flex items-center gap-2">
+        <span style=${{ background: bg, color: fg, borderRadius: '10px', padding: '6px', display: 'inline-flex' }}><${I} size=${18} aria-hidden="true" /></span>
+        <h3 style=${{ fontSize: '18px', fontWeight: 500, margin: 0 }}>${title}</h3>
+      </div>
+      <${Tag} kind="fact" />
+      <ul class="flex flex-col gap-2" style=${{ margin: 0, padding: 0, listStyle: 'none' }}>${children}</ul>
+      ${note ? html`<p class="muted" style=${{ fontSize: '13px', margin: 0 }}>${note}</p>` : null}
+    </div>`;
+  }
+
+  function EditPanel({ data, setData, onReset }) {
+    const update = (code, key, max, value) => {
+      const n = value === '' ? 0 : Math.max(0, Math.min(max, Math.round(Number(value) * 10) / 10));
+      if (Number.isNaN(n)) return;
+      setData({ ...data, subjects: data.subjects.map((s) => (s.code === code ? { ...s, [key]: n } : s)) });
+    };
+    return html`<div class="flex flex-col gap-3">
+      <div class="scroll-x">
+        <table class="t">
+          <thead><tr><th>วิชา</th><th class="r">กลางภาค /${data.maxMid}</th><th class="r">ปลายภาค /${data.maxFinal}</th></tr></thead>
+          <tbody>
+            ${data.subjects.map((s) => html`<tr key=${s.code} style=${{ cursor: 'default' }}>
+              <td style=${{ minWidth: '11rem' }}>${s.name}</td>
+              <td class="r"><input type="number" id=${'mid-' + s.code} aria-label=${'คะแนนกลางภาค ' + s.name} min="0" max=${data.maxMid} step="0.5" value=${s.mid} onChange=${(e) => update(s.code, 'mid', data.maxMid, e.target.value)} /></td>
+              <td class="r"><input type="number" id=${'final-' + s.code} aria-label=${'คะแนนปลายภาค ' + s.name} min="0" max=${data.maxFinal} step="0.5" value=${s.final} onChange=${(e) => update(s.code, 'final', data.maxFinal, e.target.value)} /></td>
+            </tr>`)}
+          </tbody>
+        </table>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" class="btn" onClick=${onReset}><${RotateCcw} size=${16} aria-hidden="true" /> คืนค่าคะแนนตามใบรายงานผล</button>
+        <span class="muted" style=${{ fontSize: '13px' }}>ทุกส่วนของหน้าคำนวณใหม่ทันที คะแนนที่แก้จะจำไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น</span>
+      </div>
+    </div>`;
+  }
+
+  /* ---------- App ---------- */
+  function loadSaved() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (!raw) return null;
+      const saved = JSON.parse(raw);
+      if (!saved || !Array.isArray(saved.subjects)) return null;
+      return { ...DEFAULT_DATA, subjects: DEFAULT_DATA.subjects.map((s) => {
+        const m = saved.subjects.find((x) => x.code === s.code);
+        return m ? { ...s, mid: Number(m.mid), final: Number(m.final) } : s;
+      }) };
+    } catch (e) { return null; }
+  }
+
+  function App() {
+    const [data, setData] = useState(() => loadSaved() || DEFAULT_DATA);
+    const [group, setGroup] = useState('all');
+    const [sort, setSort] = useState('total');
+    const [selected, setSelected] = useState('');
+    const [editing, setEditing] = useState(false);
+    const [copied, setCopied] = useState('');
+    const [theme, setTheme] = useState(loadTheme);
+
+    useEffect(() => {
+      applyTheme(theme);
+      try { localStorage.setItem(THEME_KEY, theme); } catch (e) { /* storage unavailable */ }
+    }, [theme]);
+
+    useEffect(() => {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify({ subjects: data.subjects.map(({ code, mid, final }) => ({ code, mid, final })) })); } catch (e) { /* storage unavailable */ }
+    }, [data]);
+
+    const a = useMemo(() => analyse(data), [data]);
+    const edited = useMemo(() => data.subjects.some((s, i) => s.mid !== DEFAULT_DATA.subjects[i].mid || s.final !== DEFAULT_DATA.subjects[i].final), [data]);
+    const view = useMemo(() => {
+      let rows = a.rows.filter((r) => group === 'all' || r.group === group);
+      if (sort === 'total') rows = [...rows].sort((x, y) => y.totalPct - x.totalPct || x.order - y.order);
+      else if (sort === 'change') rows = [...rows].sort((x, y) => y.change - x.change || x.order - y.order);
+      else rows = [...rows].sort((x, y) => x.order - y.order);
+      return rows;
+    }, [a, group, sort]);
+    const selRow = a.rows.find((r) => r.code === selected);
+    const plan = useMemo(() => buildPlan(a), [a]);
+    const summary = useMemo(() => buildSummary(a, data), [a, data]);
+    const toggleSel = (code) => setSelected(selected === code ? '' : code);
+
+    const copySummary = () => {
+      const done = () => { setCopied('ok'); setTimeout(() => setCopied(''), 2200); };
+      const fallback = () => {
+        const box = document.getElementById('summary-text');
+        if (box) { const range = document.createRange(); range.selectNodeContents(box); const s = window.getSelection(); s.removeAllRanges(); s.addRange(range); }
+        setCopied('select');
+      };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(summary).then(done, fallback);
+        else fallback();
+      } catch (e) { fallback(); }
+    };
+
+    const topLabel = a.top.map((r) => r.short).join(', ');
+
+    return html`<div class="wrap flex flex-col gap-8">
+      <header class="flex flex-col gap-2">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="eyebrow">${data.student.grade} · ภาคเรียนที่ ${data.student.term} ปีการศึกษา ${data.student.year}</div>
+          <${ThemeSwitch} theme=${theme} setTheme=${setTheme} />
+        </div>
+        <h1 style=${{ fontSize: 'clamp(28px, 5vw, 40px)', fontWeight: 500, lineHeight: 1.2, margin: 0 }}>ความก้าวหน้าการเรียนของ<span style=${{ color: 'var(--pink)' }}>${data.student.label}</span></h1>
+        <p class="muted" style=${{ maxWidth: '62ch', margin: 0 }}>เทอมแรกหลังย้ายมาโรงเรียนที่เน้นวิชาการ ข้อสอบยากขึ้น หน้านี้ดูแนวโน้มการเรียนรู้รายวิชา เพื่อวางแผนทบทวนที่บ้าน ไม่ได้ใช้ตัดสินความสามารถของลูกจากคะแนนครั้งเดียว</p>
+        <div class="flex flex-wrap items-center gap-2 mt-1">
+          <${HowTip} />
+          <button type="button" class="btn no-print" aria-expanded=${editing} onClick=${() => setEditing(!editing)}><${Pencil} size=${15} aria-hidden="true" /> ${editing ? 'ปิดการแก้ไขคะแนน' : 'แก้ไขคะแนน'}</button>
+          ${edited ? html`<span class="chip chip-down">กำลังแสดงคะแนนที่แก้ไขแล้ว</span>` : null}
+        </div>
+      </header>
+
+      ${editing ? html`<section class="panel p-5 flex flex-col gap-3 no-print" aria-label="แก้ไขคะแนน">
+        <h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>แก้ไขคะแนน</h2>
+        <${EditPanel} data=${data} setData=${setData} onReset=${() => setData(DEFAULT_DATA)} />
+      </section>` : null}
+
+      <section aria-label="ภาพรวม" class="flex flex-col gap-3">
+        <h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>ภาพรวม</h2>
+        <div class="grid gap-3" style=${{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr))' }}>
+          <${Kpi} label="คะแนนรวม" value=${fmt(a.overall) + '%'} sub=${`${a.sumMid + a.sumFinal}/${(a.maxMid + a.maxFinal) * a.n} คะแนน`} icon=${BarChart3} tone="navy" />
+          <${Kpi} label="เฉลี่ยกลางภาค" value=${fmt(a.midAvg) + '%'} sub=${`${a.sumMid}/${a.maxMid * a.n} คะแนน`} icon=${CalendarDays} tone="navy" />
+          <${Kpi} label="เฉลี่ยปลายภาค" value=${fmt(a.finalAvg) + '%'} sub=${`${a.sumFinal}/${a.maxFinal * a.n} · ${fmtSigned(a.diff)} จุดจากกลางภาค`} icon=${CalendarDays} tone="pink" />
+          <${Kpi} label="ปลายภาคเพิ่มขึ้น" value=${a.up.length + ' วิชา'} sub=${`คงที่ ${a.flat.length} วิชา`} icon=${TrendingUp} tone="teal" />
+          <${Kpi} label="ปลายภาคลดลง" value=${a.down.length + ' วิชา'} sub=${`จากทั้งหมด ${a.n} วิชา`} icon=${TrendingDown} tone="warm" />
+          <${Kpi} label="คะแนนรวมสูงสุด" value=${topLabel || '—'} sub=${a.top.length ? `${fmt(a.top[0].totalPct)}%` : ''} icon=${Award} tone="pink" />
+        </div>
+      </section>
+
+      <section aria-label="ผลรายวิชา" class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>ผลรายวิชา: กลางภาคเทียบปลายภาค</h2>
+          <p class="muted" style=${{ margin: 0, fontSize: '14px' }}>แปลงเป็นเปอร์เซ็นต์ก่อนเทียบ เพราะคะแนนเต็มสองครั้งไม่เท่ากัน</p>
+        </div>
+        <div class="panel p-4 flex flex-col gap-3 no-print">
+          <div class="flex flex-wrap items-center gap-2"><span class="eyebrow" style=${{ minWidth: '5.5rem' }}>กลุ่มวิชา</span>
+            <div class="seg" role="group" aria-label="กลุ่มวิชา">
+              ${GROUPS.map((g) => html`<button type="button" key=${g.id} aria-pressed=${group === g.id} onClick=${() => setGroup(g.id)}>${g.label}</button>`)}
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <label class="flex items-center gap-2"><span class="eyebrow" style=${{ minWidth: '5.5rem' }}>เรียงตาม</span>
+              <select id="sort" value=${sort} onChange=${(e) => setSort(e.target.value)}>
+                <option value="total">คะแนนรวมสูงไปต่ำ</option>
+                <option value="change">การเปลี่ยนแปลงมากไปน้อย</option>
+                <option value="default">ลำดับในใบรายงานผล</option>
+              </select>
+            </label>
+            <label class="flex items-center gap-2"><span class="eyebrow">ดูรายวิชา</span>
+              <select id="subject" value=${selected} onChange=${(e) => setSelected(e.target.value)}>
+                <option value="">— เลือกวิชา —</option>
+                ${a.rows.map((r) => html`<option key=${r.code} value=${r.code}>${r.name}</option>`)}
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="grid gap-4" style=${{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 22rem), 1fr))' }}>
+          <div class="panel p-4 min-w-0">
+            ${view.length ? html`<${SubjectChart} rows=${view} maxMid=${a.maxMid} maxFinal=${a.maxFinal} selected=${selected} onSelect=${toggleSel} />` : html`<p class="muted">ไม่มีวิชาในกลุ่มนี้</p>`}
+          </div>
+          <div class="panel p-4 min-w-0 flex flex-col gap-3" style=${{ alignSelf: 'start' }}>
+            <h3 style=${{ fontSize: '16px', fontWeight: 500, margin: 0 }}>รายละเอียดรายวิชา</h3>
+            <${SubjectDetail} row=${selRow} onClear=${() => setSelected('')} />
+          </div>
+        </div>
+        <div class="panel p-2 min-w-0">
+          <${ScoreTable} rows=${view} selected=${selected} onSelect=${toggleSel} />
+        </div>
+      </section>
+
+      <section aria-label="ข้อสังเกตการเรียนรู้" class="flex flex-col gap-3">
+        <h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>ข้อสังเกตการเรียนรู้</h2>
+        <div class="grid gap-4" style=${{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 18rem), 1fr))' }}>
+          <${InsightCard} title="จุดแข็ง" icon=${Award} tone="teal" note="วิชาที่คะแนนรวม 90% ขึ้นไป">
+            ${a.strengths.map((r) => html`<li key=${r.code} class="flex justify-between gap-3"><span>${r.name}</span><b class="num" style=${{ fontWeight: 600 }}>${fmt(r.totalPct)}%</b></li>`)}
+          <//>
+          <${InsightCard} title="พัฒนาขึ้นในปลายภาค" icon=${Sparkles} tone="pink" note=${`วิชาที่ % ปลายภาคสูงกว่ากลางภาคเกิน ${STABLE_BAND} จุด`}>
+            ${a.progress.length ? a.progress.map((r) => html`<li key=${r.code} class="flex justify-between gap-3 flex-wrap"><span>${r.short}</span><span class="num">${fmt(r.midPct)}% → <b style=${{ fontWeight: 600 }}>${fmt(r.finalPct)}%</b></span></li>`) : html`<li class="muted">ยังไม่มีวิชาที่เพิ่มขึ้น</li>`}
+          <//>
+          <${InsightCard} title="ควรทบทวน" icon=${Search} tone="warm" note="ปลายภาคต่ำกว่า 85% หรือลดลงตั้งแต่ 5 จุด">
+            ${a.review.length ? a.review.map((r) => html`<li key=${r.code} class="flex justify-between gap-3 flex-wrap"><span>${r.short}</span><span class="num">ปลายภาค <b style=${{ fontWeight: 600 }}>${fmt(r.finalPct)}%</b> <span class="muted">(${fmtSigned(r.change)})</span></span></li>`) : html`<li class="muted">ไม่มีวิชาที่เข้าเกณฑ์ทบทวน</li>`}
+          <//>
+        </div>
+        <p class="panel p-4 flex gap-3" style=${{ margin: 0, fontSize: '15px' }}>
+          <span style=${{ color: 'var(--navy)', flexShrink: 0 }}><${Info} size=${18} aria-hidden="true" /></span>
+          <span>การเปลี่ยนแปลงระหว่างกลางภาคกับปลายภาคยังบอกสาเหตุไม่ได้ เพราะความยากและเนื้อหาที่สอบสองครั้งอาจต่างกัน ควรดูคู่กับกระดาษคำตอบหรือคำแนะนำจากครู</span>
+        </p>
+      </section>
+
+      <section aria-label="แผนทบทวนเทอม 2" class="flex flex-col gap-3">
+        <div class="flex flex-wrap items-center gap-2"><h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>แผนทบทวนเทอม 2</h2><${Tag} kind="advice" /></div>
+        <div class="grid gap-4" style=${{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 20rem), 1fr))' }}>
+          ${plan.map((p) => html`<div key=${p.row.code} class="panel p-5 flex flex-col gap-2 min-w-0">
+            <div class="flex items-center justify-between gap-2 flex-wrap"><b style=${{ fontWeight: 600, fontSize: '17px' }}>${p.row.name}</b><span class="muted" style=${{ fontSize: '13px' }}>${p.why}</span></div>
+            <div style=${{ color: 'var(--pink)', fontWeight: 500 }}>${p.focus}</div>
+            <ul style=${{ margin: 0, paddingLeft: '1.1rem', listStyle: 'disc' }} class="flex flex-col gap-1">${p.steps.map((s, i) => html`<li key=${i}>${s}</li>`)}</ul>
+          </div>`)}
+        </div>
+        <div class="panel p-5 flex flex-col gap-3">
+          <div class="flex items-center gap-2"><span style=${{ color: 'var(--teal)' }}><${Target} size=${18} aria-hidden="true" /></span><b style=${{ fontWeight: 600 }}>จังหวะต่อสัปดาห์สำหรับเด็กวัย 10 ขวบ</b></div>
+          <div class="grid gap-3" style=${{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 12rem), 1fr))' }}>
+            <div><div class="eyebrow">จันทร์–พฤหัส</div><div>20–30 นาทีต่อวัน วันละหนึ่งวิชา สลับคณิตกับวิทย์เป็นหลัก</div></div>
+            <div><div class="eyebrow">ศุกร์</div><div>พัก หรือเล่นเกมคำศัพท์ภาษาอังกฤษเบา ๆ</div></div>
+            <div><div class="eyebrow">เสาร์</div><div>30–45 นาที ทบทวนข้อที่ทำผิดของสัปดาห์</div></div>
+            <div><div class="eyebrow">อาทิตย์</div><div>พักผ่อน ทำกิจกรรมนอกบ้านหรืองานศิลปะที่ลูกชอบ</div></div>
+          </div>
+          <p class="muted" style=${{ margin: 0, fontSize: '14px' }}>ก่อนสอบสองสัปดาห์ค่อยเพิ่มเวลาติว และให้ลูกเลือกเองบ้างว่าจะเริ่มวิชาไหน</p>
+        </div>
+      </section>
+
+      <section aria-label="ข้อความสรุปสำหรับคุณแม่" class="flex flex-col gap-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2"><span style=${{ color: 'var(--pink)' }}><${Heart} size=${20} aria-hidden="true" /></span><h2 style=${{ fontSize: '20px', fontWeight: 500, margin: 0 }}>ข้อความสรุปส่ง LINE</h2></div>
+          <button type="button" class="btn btn-primary no-print" onClick=${copySummary}>
+            ${copied === 'ok' ? html`<${Check} size=${16} aria-hidden="true" />` : html`<${Copy} size=${16} aria-hidden="true" />`}
+            ${copied === 'ok' ? 'คัดลอกแล้ว' : 'Copy Summary'}
+          </button>
+        </div>
+        ${copied === 'select' ? html`<p class="chip chip-down" style=${{ whiteSpace: 'normal' }}>คัดลอกอัตโนมัติไม่ได้ในหน้าจอนี้ เลือกข้อความไว้ให้แล้ว กดคัดลอกจากเมนูของเครื่องได้เลย</p>` : null}
+        <div id="summary-text" class="summary-box" tabIndex=${0}>${summary}</div>
+        <p class="muted" style=${{ margin: 0, fontSize: '13px' }}>ข้อความสร้างจากคะแนนในหน้านี้ ถ้าแก้ไขคะแนน ข้อความจะเปลี่ยนตามทันที</p>
+      </section>
+
+      <footer class="muted" style=${{ fontSize: '13px' }}>
+        ข้อมูลจากใบรายงานผลคะแนนภาคเรียนที่ 1/2569 ระดับชั้นประถมศึกษาปีที่ 4 กลางภาคเต็ม 30 ปลายภาคเต็ม 20 ต่อวิชา ไม่ใช่เกรดหรืออันดับทางการ
+      </footer>
+    </div>`;
+  }
+
+  /* ---------- Student code gate ---------- */
+  const SESSION_KEY = 'p4-learning-code-v1';
+  const fromB64 = (s) => Uint8Array.from(atob(s), (ch) => ch.charCodeAt(0));
+
+  async function unlock(code) {
+    const p = ENCRYPTED_DATA;
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(code), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: fromB64(p.salt), iterations: p.iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromB64(p.iv) }, key, fromB64(p.ct));
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+
+  function Gate() {
+    const [ready, setReady] = useState(false);
+    const [code, setCode] = useState('');
+    const [busy, setBusy] = useState(false);
+    const [error, setError] = useState('');
+
+    const tryCode = async (value, remember) => {
+      setBusy(true); setError('');
+      try {
+        DEFAULT_DATA = await unlock(value.trim());
+        if (remember) { try { sessionStorage.setItem(SESSION_KEY, value.trim()); } catch (e) { /* storage unavailable */ } }
+        setReady(true);
+      } catch (e) {
+        setError(window.crypto && crypto.subtle ? 'รหัสนักเรียนไม่ถูกต้อง ลองตรวจตัวเลขอีกครั้ง' : 'เบราว์เซอร์นี้ถอดรหัสข้อมูลไม่ได้ ลองเปิดด้วย Chrome หรือ Safari รุ่นใหม่');
+        try { sessionStorage.removeItem(SESSION_KEY); } catch (e2) { /* storage unavailable */ }
+      }
+      setBusy(false);
+    };
+
+    useEffect(() => {
+      let saved = null;
+      try { saved = sessionStorage.getItem(SESSION_KEY); } catch (e) { /* storage unavailable */ }
+      if (saved) tryCode(saved, false);
+    }, []);
+
+    if (ready) return html`<${App} />`;
+    return html`<div class="wrap" style=${{ minHeight: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <form class="panel p-6 flex flex-col gap-4" style=${{ width: 'min(100%, 24rem)', marginTop: '10vh' }}
+        onSubmit=${(e) => { e.preventDefault(); if (code.trim() && !busy) tryCode(code, true); }}>
+        <div class="flex flex-col gap-1">
+          <div class="eyebrow">ผลการเรียน ป.4 · ภาคเรียนที่ 1/2569</div>
+          <h1 style=${{ fontSize: '24px', fontWeight: 500, margin: 0 }}>กรอกรหัสนักเรียนเพื่อดูผลการเรียน</h1>
+        </div>
+        <label class="flex flex-col gap-2" for="student-code">
+          <span class="muted" style=${{ fontSize: '14px' }}>รหัสนักเรียน</span>
+          <input id="student-code" type="password" inputMode="numeric" autoComplete="off" autoFocus value=${code}
+            onInput=${(e) => setCode(e.target.value)} onChange=${(e) => setCode(e.target.value)}
+            style=${{ background: 'var(--panel)', color: 'var(--ink)', border: '1px solid var(--line)', borderRadius: '10px', padding: '10px 12px', fontSize: '20px', letterSpacing: '.2em', fontFamily: 'var(--font-body)' }} />
+        </label>
+        ${error ? html`<p role="alert" class="chip chip-down" style=${{ whiteSpace: 'normal', margin: 0 }}>${error}</p>` : null}
+        <button type="submit" class="btn btn-primary" style=${{ justifyContent: 'center' }} disabled=${busy || !code.trim()}>${busy ? 'กำลังตรวจรหัส…' : 'เปิดดูผลการเรียน'}</button>
+      </form>
+    </div>`;
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(html`<${Gate} />`);
+})();
+</script>
