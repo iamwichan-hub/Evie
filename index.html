@@ -6,7 +6,6 @@
 <meta name="robots" content="noindex, nofollow">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>ผลการเรียน ป.4 เทอม 1/2569</title>
-
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,7 +319,7 @@
           onClick=${(e) => { if (e && e.activePayload && e.activePayload[0]) onSelect(e.activePayload[0].payload.code); }}>
           <${CartesianGrid} horizontal=${false} />
           <${XAxis} type="number" domain=${[0, 100]} ticks=${[0, 25, 50, 75, 100]} tickFormatter=${(v) => v + '%'} tickLine=${false} axisLine=${false} />
-          <${YAxis} type="category" dataKey="short" width=${104} tickLine=${false} axisLine=${false} />
+          <${YAxis} type="category" dataKey="short" width=${122} tickLine=${false} axisLine=${false} />
           <${Tooltip} content=${html`<${ChartTooltip} />`} cursor=${{ fill: 'var(--navy-soft)' }} />
           <${Legend} verticalAlign="top" align="left" height=${30} iconType="square" formatter=${(v) => html`<span style=${{ color: 'var(--ink)' }}>${v}</span>`} />
           <${Bar} dataKey="midPct" name="กลางภาค (%)" fill="var(--bar-mid)" radius=${[0, 4, 4, 0]} maxBarSize=${18}>
@@ -334,7 +333,7 @@
     </div>`;
   }
 
-  function SubjectDetail({ row, onClear }) {
+  function SubjectDetail({ row, onClear, overall }) {
     if (!row) return html`<p class="muted" style=${{ fontSize: '14px' }}>แตะแท่งกราฟ แถวในตาราง หรือเลือกจากรายการ เพื่อดูรายละเอียดรายวิชา</p>`;
     const cell = (label, raw, pct) => html`<div class="min-w-0">
       <div class="eyebrow">${label}</div>
@@ -352,6 +351,40 @@
         ${cell('ปลายภาค', `${row.final}/20`, row.finalPct)}
         ${cell('รวม', `${row.total}/${row.totalMax}`, row.totalPct)}
       </div>
+      <div class="flex flex-wrap items-center gap-2" style=${{ fontSize: '14px' }}>
+        <span class="muted">เทียบค่าเฉลี่ยทุกวิชา (${fmt(overall)}%)</span>
+        <span class=${'chip ' + (row.totalPct - overall >= 0 ? 'chip-up' : 'chip-flat')}><span class="num">${fmtSigned(row.totalPct - overall)}</span> จุด</span>
+      </div>
+      <div class="flex flex-col gap-1" style=${{ borderTop: '1px solid var(--line)', paddingTop: '12px' }}>
+        <div class="flex items-center gap-2 flex-wrap"><b style=${{ fontWeight: 600, fontSize: '15px' }}>แนวทางทบทวนวิชานี้</b><${Tag} kind="advice" /></div>
+        <div style=${{ color: 'var(--pink)', fontWeight: 500, fontSize: '15px' }}>${(PLAN_LIB[row.code] || PLAN_DEFAULT).focus}</div>
+        <ul style=${{ margin: 0, paddingLeft: '1.1rem', listStyle: 'disc', fontSize: '15px' }}>${(PLAN_LIB[row.code] || PLAN_DEFAULT).steps.map((t, i) => html`<li key=${i}>${t}</li>`)}</ul>
+      </div>
+    </div>`;
+  }
+
+  function GroupSummary({ rows, group, setGroup, maxMid, maxFinal }) {
+    const stats = GROUPS.filter((g) => g.id !== 'all').map((g) => {
+      const rs = rows.filter((r) => r.group === g.id);
+      const mid = rs.reduce((a, r) => a + r.mid, 0), fin = rs.reduce((a, r) => a + r.final, 0);
+      const midPct = rs.length ? (mid / (maxMid * rs.length)) * 100 : 0;
+      const finalPct = rs.length ? (fin / (maxFinal * rs.length)) * 100 : 0;
+      const totalPct = rs.length ? ((mid + fin) / ((maxMid + maxFinal) * rs.length)) * 100 : 0;
+      const change = finalPct - midPct;
+      const status = change >= STABLE_BAND ? 'up' : change <= -STABLE_BAND ? 'down' : 'flat';
+      return { ...g, n: rs.length, midPct, finalPct, totalPct, change, status };
+    }).filter((g) => g.n > 0);
+    const bar = (pct, color) => html`<div class="bar-track" style=${{ flex: 1 }}><div class="bar-fill" style=${{ width: Math.min(100, pct) + '%', background: color }}></div></div>`;
+    return html`<div class="flex flex-col gap-2">
+      ${stats.map((g) => html`<button type="button" key=${g.id} onClick=${() => setGroup(group === g.id ? 'all' : g.id)} aria-pressed=${group === g.id}
+          class="text-left flex flex-col gap-2" style=${{ border: '1px solid ' + (group === g.id ? 'var(--navy)' : 'var(--line)'), background: group === g.id ? 'var(--navy-soft)' : 'transparent', borderRadius: '12px', padding: '10px 12px', cursor: 'pointer', color: 'var(--ink)' }}>
+        <div class="flex items-center justify-between gap-2 flex-wrap">
+          <span style=${{ fontWeight: 500 }}>${g.label} <span class="muted" style=${{ fontSize: '13px' }}>${g.n} วิชา</span></span>
+          <span class="flex items-center gap-2"><span class="display num" style=${{ fontSize: '18px' }}>${fmt(g.totalPct)}%</span><${StatusChip} status=${g.status} change=${g.change} /></span>
+        </div>
+        <div class="flex items-center gap-2 num" style=${{ fontSize: '13px' }}><span class="muted" style=${{ width: '4.2rem' }}>กลางภาค</span>${bar(g.midPct, 'var(--bar-mid)')}<span style=${{ width: '3.4rem', textAlign: 'right' }}>${fmt(g.midPct)}%</span></div>
+        <div class="flex items-center gap-2 num" style=${{ fontSize: '13px' }}><span class="muted" style=${{ width: '4.2rem' }}>ปลายภาค</span>${bar(g.finalPct, 'var(--bar-final)')}<span style=${{ width: '3.4rem', textAlign: 'right' }}>${fmt(g.finalPct)}%</span></div>
+      </button>`)}
     </div>`;
   }
 
@@ -542,9 +575,18 @@
           <div class="panel p-4 min-w-0">
             ${view.length ? html`<${SubjectChart} rows=${view} maxMid=${a.maxMid} maxFinal=${a.maxFinal} selected=${selected} onSelect=${toggleSel} />` : html`<p class="muted">ไม่มีวิชาในกลุ่มนี้</p>`}
           </div>
-          <div class="panel p-4 min-w-0 flex flex-col gap-3" style=${{ alignSelf: 'start' }}>
-            <h3 style=${{ fontSize: '16px', fontWeight: 500, margin: 0 }}>รายละเอียดรายวิชา</h3>
-            <${SubjectDetail} row=${selRow} onClear=${() => setSelected('')} />
+          <div class="flex flex-col gap-4 min-w-0">
+            <div class="panel p-4 min-w-0 flex flex-col gap-3">
+              <h3 style=${{ fontSize: '16px', fontWeight: 500, margin: 0 }}>รายละเอียดรายวิชา</h3>
+              <${SubjectDetail} row=${selRow} onClear=${() => setSelected('')} overall=${a.overall} />
+            </div>
+            <div class="panel p-4 min-w-0 flex flex-col gap-3">
+              <div class="flex flex-col gap-1">
+                <h3 style=${{ fontSize: '16px', fontWeight: 500, margin: 0 }}>ภาพรวมตามกลุ่มวิชา</h3>
+                <p class="muted" style=${{ margin: 0, fontSize: '13px' }}>รวมคะแนนทุกวิชาในกลุ่มแล้วคิดเป็น % แตะกลุ่มเพื่อกรองกราฟและตาราง</p>
+              </div>
+              <${GroupSummary} rows=${a.rows} group=${group} setGroup=${setGroup} maxMid=${a.maxMid} maxFinal=${a.maxFinal} />
+            </div>
           </div>
         </div>
         <div class="panel p-2 min-w-0">
